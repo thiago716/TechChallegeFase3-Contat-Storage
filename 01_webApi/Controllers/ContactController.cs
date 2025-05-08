@@ -7,11 +7,12 @@ using webApi.Extensions;
 
 namespace webApi.Controllers
 {
-    [Route("api/v1/contacts")]
+    [Route("api/v1/Storage/contacts")]
     [ApiController]
     public class ContactController : ControllerBase
     {
         private readonly IContactService _contactService;
+        private readonly IDirectDistanceDialingService _dddService;
         private readonly IMemoryCache _cache;
 
         public ContactController(IContactService contactService, IMemoryCache cache)

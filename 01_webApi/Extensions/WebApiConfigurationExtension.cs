@@ -49,7 +49,15 @@ namespace webApi.Extensions
         public static void ConfigureSwagger(this WebApplicationBuilder builder)
         {
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "APIStorageContato",
+                    Version = "v1",
+                    Description = "Esta API realiza operações diretas no banco de dados para gerenciamento de contatos por DDD.",
+                });
+            });
         }
     }
 }
