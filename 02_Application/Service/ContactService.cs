@@ -20,9 +20,12 @@ namespace Application.Service
         {
             var ddd = await _directDistanceDialingRepository.GetByIdAsync(dddId);
 
-            return ddd is null
-                ? throw new ArgumentException("Invalid Direct Distance Dialing Id")
-                : await _contactRepository.GetAllByDddAsync(dddId);
+            if (ddd is null)
+                throw new ArgumentException("Invalid Direct Distance Dialing Id");
+
+            var contacts = await _contactRepository.GetAllByDddAsync(dddId);
+            return contacts ?? new List<Contact>();
+
         }
     }
 }
